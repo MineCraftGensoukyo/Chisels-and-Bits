@@ -116,6 +116,10 @@ public class NetworkRouter
 		{
 			;
 		}
+		finally
+		{
+			ev.getPacket().payload().release();
+		}
 	}
 
 	@SubscribeEvent
@@ -132,6 +136,10 @@ public class NetworkRouter
 		catch ( final ThreadQuickExitException ext )
 		{
 			;
+		}
+		finally
+		{
+			ev.getPacket().payload().release();
 		}
 	}
 

@@ -36,8 +36,10 @@ public class SmartModelManager
 		}
 
 		ChiselsAndBits.getInstance().addClearable( smartModel );
+		BitItemSmartModel bitSmartModel = new BitItemSmartModel();
+		ChiselsAndBits.getInstance().addClearable( bitSmartModel );
 
-		add( new ResourceLocation( ChiselsAndBits.MODID, "models/item/block_bit" ), new BitItemSmartModel() );
+		add( new ResourceLocation( ChiselsAndBits.MODID, "models/item/block_bit" ), bitSmartModel );
 		add( new ResourceLocation( ChiselsAndBits.MODID, "models/item/positiveprint_written_preview" ), new PrintSmartModel( "positiveprint", ChiselsAndBits.getItems().itemPositiveprint ) );
 		add( new ResourceLocation( ChiselsAndBits.MODID, "models/item/negativeprint_written_preview" ), new PrintSmartModel( "negativeprint", ChiselsAndBits.getItems().itemNegativeprint ) );
 		add( new ResourceLocation( ChiselsAndBits.MODID, "models/item/mirrorprint_written_preview" ), new PrintSmartModel( "mirrorprint", ChiselsAndBits.getItems().itemMirrorprint ) );

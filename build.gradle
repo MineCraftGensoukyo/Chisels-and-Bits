@@ -1,6 +1,5 @@
 buildscript {
     repositories {
-        jcenter()
         maven {
             name = "forge"
             url = "http://files.minecraftforge.net/maven"
@@ -20,9 +19,7 @@ compileJava {
 
 group= "mod.chiselsandbits"
 archivesBaseName = "chiselsandbits"
-if (System.getenv().BUILD_NUMBER != null) {//adds the build number to the end of the version string if on a build server
-    project.version += ".${System.getenv().BUILD_NUMBER}"
-}
+version= "${mainVersion}.${fixVersion}-unofficial"
 
 repositories {
 	maven { url "http://dvs1.progwml6.com/files/maven" }
@@ -40,7 +37,7 @@ minecraft {
     runDir = "eclipse"
     mappings = "snapshot_20161111"
     replaceIn "ChiselsAndBits.java"
-    replace "@VERSION@", project.version
+    replace "@VERSION@", "${mainVersion}"
 }
 
 task apiJar(type: Jar) {
@@ -53,11 +50,11 @@ task apiJar(type: Jar) {
     classifier = 'api'
 }
 // prevent java 8's strict doclint for javadocs from failing builds
-    allprojects {
-      tasks.withType(Javadoc) {
-        options.addStringOption('Xdoclint:none', '-quiet')
-      }
-    }
+allprojects {
+  tasks.withType(Javadoc) {
+    options.addStringOption('Xdoclint:none', '-quiet')
+  }
+}
 
 jar {
 	manifest {
@@ -76,7 +73,7 @@ task sourcesJar(type: Jar) {
 
 artifacts {
    archives javadocJar
-   archives sourcesJar
+   //archives sourcesJar
    archives apiJar
 }
 
